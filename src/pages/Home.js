@@ -9,10 +9,18 @@ function Home() {
 
       <div className="card-grid">
         <wa-card className="nav-card">
-          <div slot="header"><strong>Form Controls</strong></div>
+          <div slot="header"><strong>Actions</strong></div>
+          <p>Buttons, button groups, and copy buttons.</p>
+          <div slot="footer">
+            <wa-button variant="brand" href="/actions">View Actions</wa-button>
+          </div>
+        </wa-card>
+
+        <wa-card className="nav-card">
+          <div slot="header"><strong>Forms</strong></div>
           <p>
-            Inputs, selects, sliders, checkboxes, color pickers, date
-            and time fields.
+            Inputs, selects, checkboxes, color pickers, date and time
+            fields.
           </p>
           <div slot="footer">
             <wa-button variant="brand" href="/forms">Explore Forms</wa-button>
@@ -20,10 +28,26 @@ function Home() {
         </wa-card>
 
         <wa-card className="nav-card">
+          <div slot="header"><strong>Layout</strong></div>
+          <p>Dividers, split panels, and zoomable frames.</p>
+          <div slot="footer">
+            <wa-button variant="brand" href="/layout">View Layout</wa-button>
+          </div>
+        </wa-card>
+
+        <wa-card className="nav-card">
+          <div slot="header"><strong>Navigation</strong></div>
+          <p>Breadcrumbs, dropdowns, tabs, trees, and pagination.</p>
+          <div slot="footer">
+            <wa-button variant="brand" href="/navigation">View Navigation</wa-button>
+          </div>
+        </wa-card>
+
+        <wa-card className="nav-card">
           <div slot="header"><strong>Feedback</strong></div>
           <p>
-            Callouts, badges, tags, avatars, icons, skeletons, and
-            formatted values.
+            Callouts, badges, dialogs, drawers, popovers, toasts,
+            and tooltips.
           </p>
           <div slot="footer">
             <wa-button variant="brand" href="/feedback">View Feedback</wa-button>
@@ -31,55 +55,21 @@ function Home() {
         </wa-card>
 
         <wa-card className="nav-card">
-          <div slot="header"><strong>Interactive</strong></div>
-          <p>
-            Accordions, tabs, dialogs, drawers, dropdowns, popovers,
-            and copy buttons.
-          </p>
-          <div slot="footer">
-            <wa-button variant="brand" href="/interactive">Try Interactive</wa-button>
-          </div>
-        </wa-card>
-
-        <wa-card className="nav-card">
           <div slot="header"><strong>Media</strong></div>
-          <p>
-            Carousels, animations, comparisons, QR codes, and zoomable
-            frames.
-          </p>
+          <p>Icons and animated images.</p>
           <div slot="footer">
             <wa-button variant="brand" href="/media">View Media</wa-button>
           </div>
         </wa-card>
 
         <wa-card className="nav-card">
-          <div slot="header"><strong>Navigation</strong></div>
+          <div slot="header"><strong>Helpers</strong></div>
           <p>
-            Breadcrumbs, trees, scrollers, and dividers.
+            Animations, avatars, carousels, formatters, observers,
+            progress, and more.
           </p>
           <div slot="footer">
-            <wa-button variant="brand" href="/navigation">View Navigation</wa-button>
-          </div>
-        </wa-card>
-
-        <wa-card className="nav-card">
-          <div slot="header"><strong>Layout</strong></div>
-          <p>
-            Split panels, popups, markdown rendering, and includes.
-          </p>
-          <div slot="footer">
-            <wa-button variant="brand" href="/layout">View Layout</wa-button>
-          </div>
-        </wa-card>
-
-        <wa-card className="nav-card">
-          <div slot="header"><strong>Observers</strong></div>
-          <p>
-            Intersection, mutation, and resize observers with live
-            output.
-          </p>
-          <div slot="footer">
-            <wa-button variant="brand" href="/observers">View Observers</wa-button>
+            <wa-button variant="brand" href="/helpers">View Helpers</wa-button>
           </div>
         </wa-card>
 

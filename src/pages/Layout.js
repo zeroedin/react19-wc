@@ -1,14 +1,28 @@
-import { useState } from 'react';
-
 function Layout() {
-  const [popupPlacement, setPopupPlacement] = useState('top');
-
   return (
     <div className="page">
-      <h2>Layout Components</h2>
+      <h2>Layout</h2>
       <p>
-        Panels, positioning, and content rendering.
+        Structural components for dividing, splitting, and framing content.
       </p>
+
+      <wa-card>
+        <div slot="header"><strong>Divider</strong></div>
+        <p>Horizontal divider between content sections:</p>
+        <wa-divider />
+        <p>Content below the divider.</p>
+        <wa-divider />
+        <p>Vertical dividers separate inline elements:</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', height: '2rem' }}>
+          <span>Home</span>
+          <wa-divider orientation="vertical" />
+          <span>Products</span>
+          <wa-divider orientation="vertical" />
+          <span>About</span>
+          <wa-divider orientation="vertical" />
+          <span>Contact</span>
+        </div>
+      </wa-card>
 
       <wa-card>
         <div slot="header"><strong>Split Panel</strong></div>
@@ -37,70 +51,11 @@ function Layout() {
       </wa-card>
 
       <wa-card>
-        <div slot="header"><strong>Popover</strong></div>
-        <p>
-          Anchored floating panel for rich content. Uses{' '}
-          <code>for</code> to reference a trigger element's{' '}
-          <code>id</code>, like tooltips.
-        </p>
-        <wa-button id="layout-popover-trigger" variant="brand">
-          Toggle Popover
-        </wa-button>
-        <wa-popover for="layout-popover-trigger" placement={popupPlacement} distance={8}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <p style={{ margin: 0 }}>
-              Popovers support interactive content.
-            </p>
-            <wa-select
-              label="Placement"
-              value={popupPlacement}
-              onChange={(e) => setPopupPlacement(e.target.value)}
-            >
-              <wa-option value="top">Top</wa-option>
-              <wa-option value="bottom">Bottom</wa-option>
-              <wa-option value="left">Left</wa-option>
-              <wa-option value="right">Right</wa-option>
-            </wa-select>
-          </div>
-        </wa-popover>
-      </wa-card>
-
-      <wa-card>
-        <div slot="header"><strong>Markdown</strong></div>
-        <p>
-          Renders markdown to HTML in the browser. Content goes in a{' '}
-          <code>&lt;script type="text/markdown"&gt;</code> child.
-        </p>
-        <wa-markdown>
-          <script type="text/markdown">{`
-## Rendered Markdown
-
-This content is **parsed and rendered** by \`wa-markdown\`.
-
-- List item one
-- List item two
-- List item three
-
-\`\`\`js
-const greeting = 'Hello from markdown';
-console.log(greeting);
-\`\`\`
-          `}</script>
-        </wa-markdown>
-      </wa-card>
-
-      <wa-card>
-        <div slot="header"><strong>Include</strong></div>
-        <p>
-          Fetches external HTML and embeds it inline.
-        </p>
-        <wa-callout variant="warning">
-          In bundled apps (create-react-app, Vite), the <code>src</code>{' '}
-          path must point to a file served by the dev server. Place the
-          file in the <code>public/</code> directory and reference it
-          from there.
-        </wa-callout>
-        <wa-include src="/include-demo.html" />
+        <div slot="header"><strong>Zoomable Frame</strong></div>
+        <wa-zoomable-frame
+          src="https://example.com"
+          style={{ height: '300px' }}
+        />
       </wa-card>
     </div>
   );

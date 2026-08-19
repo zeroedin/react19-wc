@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, NavLink, useNavigate } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
+import Actions from './pages/Actions';
 import Forms from './pages/Forms';
-import Feedback from './pages/Feedback';
-import Interactive from './pages/Interactive';
-import Tutorial from './pages/Tutorial';
-import Media from './pages/Media';
-import Navigation from './pages/Navigation';
 import Layout from './pages/Layout';
-import Observers from './pages/Observers';
+import Navigation from './pages/Navigation';
+import Feedback from './pages/Feedback';
+import Media from './pages/Media';
+import Helpers from './pages/Helpers';
+import Tutorial from './pages/Tutorial';
 
 function useInterceptShadowLinks() {
   const navigate = useNavigate();
@@ -42,13 +42,13 @@ function useInterceptShadowLinks() {
 
 const NAV_LINKS = [
   { to: '/', label: 'Home', end: true },
+  { to: '/actions', label: 'Actions' },
   { to: '/forms', label: 'Forms' },
-  { to: '/feedback', label: 'Feedback' },
-  { to: '/interactive', label: 'Interactive' },
-  { to: '/media', label: 'Media' },
-  { to: '/navigation', label: 'Navigation' },
   { to: '/layout', label: 'Layout' },
-  { to: '/observers', label: 'Observers' },
+  { to: '/navigation', label: 'Navigation' },
+  { to: '/feedback', label: 'Feedback' },
+  { to: '/media', label: 'Media' },
+  { to: '/helpers', label: 'Helpers' },
   { to: '/tutorial', label: 'Tutorial' },
 ];
 
@@ -88,13 +88,13 @@ function AppShell() {
         <div className="app-main">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/actions" element={<Actions />} />
             <Route path="/forms" element={<Forms />} />
-            <Route path="/feedback" element={<Feedback />} />
-            <Route path="/interactive" element={<Interactive />} />
-            <Route path="/media" element={<Media />} />
-            <Route path="/navigation" element={<Navigation />} />
             <Route path="/layout" element={<Layout />} />
-            <Route path="/observers" element={<Observers />} />
+            <Route path="/navigation" element={<Navigation />} />
+            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/media" element={<Media />} />
+            <Route path="/helpers" element={<Helpers />} />
             <Route path="/tutorial" element={<Tutorial />} />
             <Route path="/tutorial/:step" element={<Tutorial />} />
           </Routes>
