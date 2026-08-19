@@ -70,11 +70,16 @@ import './webawesome';`}</code></pre>
 <wa-switch checked={darkMode || undefined} />
 <wa-button disabled={isLoading || undefined} />`}</code></pre>
         <wa-callout variant="brand">
-          For boolean props, pass <code>true</code> to enable or{' '}
-          <code>undefined</code> to disable. Passing{' '}
-          <code>false</code> sets the property to <code>false</code>,
-          which some components treat differently than the property
-          being absent.
+          HTML boolean attributes are either present or absent. There
+          is no <code>checked="false"</code>. The attribute{' '}
+          <code>&lt;input checked&gt;</code> is checked, and{' '}
+          <code>&lt;input&gt;</code> (no attribute) is unchecked. Web
+          components follow this same convention. In JSX, pass{' '}
+          <code>true</code> to add the attribute or{' '}
+          <code>undefined</code> to remove it. Passing{' '}
+          <code>false</code> sets the <em>property</em> to{' '}
+          <code>false</code> but may leave the attribute present,
+          which some components interpret as truthy.
         </wa-callout>
         <p>
           React 18 equivalent of the same code:
@@ -137,24 +142,36 @@ const value = selectRef.current?.value;
     content: (
       <>
         <p>
-          React 19 maps DOM events on custom elements to JSX handlers with
-          the <code>on</code> + name convention. Form controls fire native{' '}
-          <code>input</code> and <code>change</code> events. UI lifecycle
-          events use custom names like <code>wa-show</code>.
+          Native events like <code>change</code> and{' '}
+          <code>input</code> work reliably with JSX handlers:
         </p>
-        <pre><code>{`// Native events → standard React handlers
-<wa-input onInput={(e) => setName(e.target.value)} />
+        <pre><code>{`<wa-input onInput={(e) => setName(e.target.value)} />
 <wa-select onChange={(e) => setVal(e.target.value)}>
-<wa-switch onChange={(e) => setDark(e.target.checked)} />
+<wa-switch onChange={(e) => setDark(e.target.checked)} />`}</code></pre>
+        <p>
+          Custom events (<code>wa-select</code>,{' '}
+          <code>wa-remove</code>, <code>wa-resize</code>) don't
+          reliably fire through JSX <code>onWa*</code> props. Use a
+          ref with <code>addEventListener</code> instead:
+        </p>
+        <pre><code>{`const ref = useRef(null);
 
-// Custom events → on + PascalCase
-<wa-dialog onWaHide={() => setOpen(false)} />
-<wa-drawer onWaShow={() => console.log('opened')} />`}</code></pre>
-        <wa-callout variant="brand">
-          React 19 registers event listeners for any <code>on*</code>{' '}
-          prop on a custom element. <code>change</code> maps to{' '}
-          <code>onChange</code>. <code>wa-hide</code> maps to{' '}
-          <code>onWaHide</code>.
+useEffect(() => {
+  const el = ref.current;
+  if (!el) return;
+  const handler = (e) =>
+    setSelected(e.detail?.item?.textContent);
+  el.addEventListener('wa-select', handler);
+  return () =>
+    el.removeEventListener('wa-select', handler);
+}, []);
+
+<wa-dropdown ref={ref}>...</wa-dropdown>`}</code></pre>
+        <wa-callout variant="warning">
+          Native events (<code>change</code>, <code>input</code>,{' '}
+          <code>click</code>) work in JSX. Custom events with the{' '}
+          <code>wa-</code> prefix need <code>addEventListener</code>{' '}
+          via a ref.
         </wa-callout>
       </>
     ),
