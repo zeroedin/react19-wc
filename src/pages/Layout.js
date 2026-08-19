@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 function Layout() {
-  const [popupActive, setPopupActive] = useState(false);
   const [popupPlacement, setPopupPlacement] = useState('top');
 
   return (
@@ -38,49 +37,32 @@ function Layout() {
       </wa-card>
 
       <wa-card>
-        <div slot="header"><strong>Popup</strong></div>
+        <div slot="header"><strong>Popover</strong></div>
         <p>
-          Low-level positioning primitive. Anchors one element to another
-          and keeps them aligned as the page scrolls.
+          Anchored floating panel for rich content. Uses{' '}
+          <code>for</code> to reference a trigger element's{' '}
+          <code>id</code>, like tooltips.
         </p>
-        <div className="button-row" style={{ marginBottom: '1rem' }}>
-          <wa-select
-            label="Placement"
-            value={popupPlacement}
-            onChange={(e) => setPopupPlacement(e.target.value)}
-            style={{ width: '10rem' }}
-          >
-            <wa-option value="top">Top</wa-option>
-            <wa-option value="bottom">Bottom</wa-option>
-            <wa-option value="left">Left</wa-option>
-            <wa-option value="right">Right</wa-option>
-          </wa-select>
-        </div>
-        <div style={{ position: 'relative', minHeight: '120px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <wa-popup
-            placement={popupPlacement}
-            active={popupActive || undefined}
-            distance={8}
-            arrow
-          >
-            <wa-button
-              slot="anchor"
-              variant="brand"
-              onClick={() => setPopupActive(!popupActive)}
+        <wa-button id="layout-popover-trigger" variant="brand">
+          Toggle Popover
+        </wa-button>
+        <wa-popover for="layout-popover-trigger" placement={popupPlacement} distance={8}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <p style={{ margin: 0 }}>
+              Popovers support interactive content.
+            </p>
+            <wa-select
+              label="Placement"
+              value={popupPlacement}
+              onChange={(e) => setPopupPlacement(e.target.value)}
             >
-              {popupActive ? 'Hide Popup' : 'Show Popup'}
-            </wa-button>
-            <div style={{
-              padding: '0.75rem 1rem',
-              background: 'var(--wa-color-surface-raised, white)',
-              border: '1px solid var(--wa-color-surface-border, #ddd)',
-              borderRadius: '4px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-            }}>
-              Positioned with <code>wa-popup</code>
-            </div>
-          </wa-popup>
-        </div>
+              <wa-option value="top">Top</wa-option>
+              <wa-option value="bottom">Bottom</wa-option>
+              <wa-option value="left">Left</wa-option>
+              <wa-option value="right">Right</wa-option>
+            </wa-select>
+          </div>
+        </wa-popover>
       </wa-card>
 
       <wa-card>
