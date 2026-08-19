@@ -1,8 +1,18 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function Feedback() {
   const [rating, setRating] = useState(0);
   const [progress, setProgress] = useState(63);
+  const [showRemovable, setShowRemovable] = useState(true);
+  const removableRef = useRef(null);
+
+  useEffect(() => {
+    const el = removableRef.current;
+    if (!el) return;
+    const handler = () => setShowRemovable(false);
+    el.addEventListener('wa-remove', handler);
+    return () => el.removeEventListener('wa-remove', handler);
+  }, [showRemovable]);
 
   return (
     <div className="page">
@@ -88,7 +98,11 @@ function Feedback() {
           <wa-tag variant="warning">Warning</wa-tag>
           <wa-tag variant="danger">Danger</wa-tag>
           <wa-tag variant="neutral">Neutral</wa-tag>
-          <wa-tag variant="brand" with-remove>Removable</wa-tag>
+          {showRemovable && (
+            <wa-tag variant="brand" with-remove ref={removableRef}>
+              Removable
+            </wa-tag>
+          )}
           <wa-tag variant="neutral" pill>Pill</wa-tag>
         </div>
       </wa-card>
