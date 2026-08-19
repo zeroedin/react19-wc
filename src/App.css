@@ -127,6 +127,10 @@ wa-page::part(navigation) {
   rotate: none;
 }
 
+.split-caret::part(caret) {
+  margin-inline-start: 0;
+}
+
 .anim-controls {
   display: flex;
   gap: 0.5rem;

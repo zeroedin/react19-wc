@@ -199,7 +199,7 @@ function Interactive() {
           <wa-button-group label="Actions">
             <wa-button variant="brand">Save</wa-button>
             <wa-dropdown placement="bottom-end">
-              <wa-button slot="trigger" variant="brand" with-caret />
+              <wa-button slot="trigger" variant="brand" with-caret className="split-caret" />
               <wa-dropdown-item>Save as draft</wa-dropdown-item>
               <wa-dropdown-item>Save and publish</wa-dropdown-item>
               <wa-dropdown-item>Export</wa-dropdown-item>
